@@ -1,5 +1,8 @@
 package com.pluralsight;
 
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -55,6 +58,19 @@ public class Store {
         //
         // where id is a unique string identifier, name is the product name,
         // price is a double value representing the price of the product
+
+        try {
+            BufferedReader buffReader = new BufferedReader(new FileReader(fileName));
+            String input;
+            while ((input = buffReader.readLine()) != null) {
+
+                String[] strings = input.split("\\|");
+
+                inventory.add(new Product(strings[0], strings[1], Double.parseDouble(strings[2]), strings[3]));
+            }
+        } catch (IOException e) {
+            System.out.println("ERROR: file read error.");
+        }
     }
 
     public static void displayProducts(ArrayList<Product> inventory, ArrayList<Product> cart, Scanner scanner) {
@@ -63,6 +79,24 @@ public class Store {
         // prompt the user to enter the ID of the product they want to add to
         // their cart. The method should
         // add the selected product to the cart ArrayList.
+
+        System.out.println("Here's a list of all our products: ");
+
+        for (Product product : inventory) {
+            System.out.println(product.getId() + " | " + product.getName() + " | " +
+                    product.getPrice());
+        }
+
+        System.out.print("Want to search for a specific product? Enter the item ID to add it directly to your cart: ");
+        String inputId = scanner.nextLine();
+        Product product = findProductById(inputId, inventory);
+
+        if (product != null) {
+            cart.add(product);
+            System.out.println(product.getName() + " added to cart.");
+        } else {
+            System.out.println("404: product not found.");
+        }
     }
 
     public static void displayCart(ArrayList<Product> cart, Scanner scanner, double totalAmount) {
@@ -71,6 +105,38 @@ public class Store {
         // prompt the user to remove items from their cart by entering the ID
         // of the product they want to remove. The method should update the cart ArrayList and totalAmount
         // variable accordingly.
+
+        if (cart.isEmpty()) {
+            System.out.println("cart is empty.");
+            return;
+        }
+
+        System.out.println("Your Cart: ");
+        totalAmount = 0;
+        for (Product product : cart) {
+            System.out.println(product.getId() + " | " +
+                    product.getName() + " | $" + product.getPrice());
+            totalAmount += product.getPrice();
+        }
+        System.out.printf("Products in cart: $%.2f%n", totalAmount);
+
+        System.out.println("Remove item from cart? Y or N: ");
+        String response = scanner.nextLine().trim();
+
+        if (response.equalsIgnoreCase("y")) {
+            System.out.println("Please enter ID of item you wish to remove: ");
+            String productId = scanner.nextLine().trim();
+            Product removeProduct = findProductById(productId, cart);
+
+            if (removeProduct != null) {
+                cart.remove(removeProduct);
+                totalAmount -= removeProduct.getPrice();
+                System.out.println(removeProduct.getName() + " removed from cart.");
+                System.out.printf("Products in cart: $%.2f%n", totalAmount);
+            } else {
+                System.out.println("404: product not found in cart.");
+            }
+        }
     }
 
     public static void checkOut(ArrayList<Product> cart, double totalAmount) {
@@ -78,6 +144,7 @@ public class Store {
         // and display a summary of the purchase to the user. The method should
         // prompt the user to confirm the purchase, and deduct the total cost
         // from their account if they confirm.
+
     }
 
     public static Product findProductById(String id, ArrayList<Product> inventory) {
@@ -85,5 +152,12 @@ public class Store {
         // the specified ID, and return the corresponding com.pluralsight.Product object. If
         // no product with the specified ID is found, the method should return
         // null.
+
+        for (Product product : inventory) {
+            if (product.getId().equalsIgnoreCase(id.trim())) {
+                return product;
+            }
+        }
+        return null;
     }
 }
