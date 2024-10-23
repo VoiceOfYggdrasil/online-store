@@ -63,11 +63,13 @@ public class Store {
             BufferedReader buffReader = new BufferedReader(new FileReader(fileName));
             String input;
             while ((input = buffReader.readLine()) != null) {
-
-                String[] strings = input.split("\\|");
-
-                inventory.add(new Product(strings[0], strings[1], Double.parseDouble(strings[2]), strings[3]));
+            String[] strings = input.split("\\|");
+            String id = strings[0];
+            String name = strings[1];
+            double price = Double.parseDouble(strings[2]);
+            inventory.add(new Product(id, name, price));
             }
+            buffReader.close();
         } catch (IOException e) {
             System.out.println("ERROR: file read error.");
         }
