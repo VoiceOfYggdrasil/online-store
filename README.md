@@ -1,21 +1,11 @@
-# Project Title
+# Online Store
 
-## Description of the Project
+## Brief Synopsis
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
-
-![Class Diagram](path/to/your/class_diagram.png)
-
-## User Stories
-
-List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
-
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+The **Online Store** application provides a mockup of an online storefront. It allows the user to look at the entire inventory, search for specific items, add/remove items from a cart, and check out with a receipt.
 
 ## Setup
 
-Instructions on how to set up and run the project using IntelliJ IDEA.
 
 ### Prerequisites
 
@@ -30,41 +20,30 @@ Follow these steps to get your application running within IntelliJ IDEA:
 2. Select "Open" and navigate to the directory where you cloned or downloaded the project.
 3. After the project opens, wait for IntelliJ to index the files and set up the project.
 4. Find the main class with the `public static void main(String[] args)` method.
-5. Right-click on the file and select 'Run 'YourMainClassName.main()'' to start the application.
+5. Right-click on the file and select 'Run 'Store.main()'' to start the application.
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- Java: JDK 17
+- import java.io.*; 
+- import java.io.BufferedReader; 
+- import java.io.FileReader; 
+- import java.time.LocalDateTime; 
+- import java.util.ArrayList; 
+- import java.util.Scanner;
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
 
-![Application Screenshot](path/to/your/screenshot.png)
-
-## Future Work
-
-Outline potential future enhancements or functionalities you might consider adding:
-
-- Additional feature to be developed.
-- Improvement of current functionalities.
+![Online Store 1](imgs/OnlineStore1.png)
+![Online Store 2](imgs/OnlineStore2.png)
+![Online Store 3](imgs/OnlineStore3.png)
 
 ## Resources
 
-List resources such as tutorials, articles, or documentation that helped you during the project.
-
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
-
-## Team Members
-
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+Stack Overflow is my saving grace.
 
 ## Thanks
 
-Express gratitude towards those who provided help, guidance, or resources:
-
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+- Thank you to [Raymond] for continuous support and guidance.
+- Thanks [Carmen] and [Corrie] for keeping me from losing my mind.
